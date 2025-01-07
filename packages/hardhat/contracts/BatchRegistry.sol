@@ -65,6 +65,7 @@ contract BatchRegistry is Ownable {
         if (!allowList[tx.origin]) revert NotInAllowList();
 
         bool wasFirstTime;
+        
         if (yourContractAddress[tx.origin] == address(0)) {
             checkedInCounter++;
             wasFirstTime = true;

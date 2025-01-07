@@ -3,7 +3,7 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { Contract } from "ethers";
 
 // Update with your Batch number
-const BATCH_NUMBER = "12";
+//const BATCH_NUMBER = "12";
 
 /**
  * Deploys a contract named "deployYourContract" using the deployer account and
@@ -24,8 +24,9 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   */
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
+  const batchRegistryAddress = "0x72ccAbE6620fa94eC69569d17f18a3914BEFBFD6";
 
-  await deploy("BatchRegistry", {
+  /* await deploy("BatchRegistry", {
     from: deployer,
     // Contract constructor arguments
     args: [deployer, BATCH_NUMBER],
@@ -37,16 +38,41 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
   // Get the deployed contract to interact with it after deploying.
   const batchRegistry = await hre.ethers.getContract<Contract>("BatchRegistry", deployer);
-  console.log("\nBatchRegistry deployed to:", await batchRegistry.getAddress());
+  const batchRegistryAddress = await batchRegistry.getAddress();
+  console.log("\nBatchRegistry deployed to:", batchRegistryAddress);
   console.log("Remember to update the allow list!\n");
 
   // The GraduationNFT contract is deployed on the BatchRegistry constructor.
   const batchGraduationNFTAddress = await batchRegistry.batchGraduationNFT();
   console.log("BatchGraduation NFT deployed to:", batchGraduationNFTAddress, "\n");
+
+  // Transfer the ownership of the BatchRegistry contract to my frontend address
+  await batchRegistry.transferOwnership("0x0752f523512Ad24E82739D3434C0710A4cA5058f");
+  console.log("Ownership transferred to the frontend address.\n"); */
+
+  // Deploy Checkin contract
+  await deploy("CheckinContract", {
+    from: deployer,
+    args: [batchRegistryAddress],
+    log: true,
+    autoMine: true,
+  });
+
+  // Get the deployed Checkin contract
+  const checkinContract = await hre.ethers.getContract<Contract>("CheckinContract", deployer);
+  console.log("\nCheckinContract deployed to:", await checkinContract.getAddress());
+
+  // Transfer the ownership of the checkin contract to my frontend address
+  await checkinContract.transferOwnership("0x24e765Fcd00106D7175837848ec9073f9fEb9d8e");
+  console.log("Ownership transferred to the frontend address.\n");
+
+  /*   // Update the allow list with the frontend address
+  await batchRegistry.updateAllowList([0x0752f523512ad24e82739d3434c0710a4ca5058f], [true]);
+  console.log("Allow list updated with the frontend address.\n"); */
 };
 
 export default deployYourContract;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["BatchRegistry"];
+deployYourContract.tags = ["BatchRegistry", "CheckinContract"];
