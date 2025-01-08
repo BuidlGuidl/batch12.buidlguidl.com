@@ -1,44 +1,45 @@
+import Image from "next/image";
+import { type NextPage } from "next";
 import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { Address } from "~~/components/scaffold-eth";
 
-export default function Page() {
-  const BUILDER_INFO = {
-    name: "Jason Suárez",
-    role: "Smart Contract | Frontend Developer",
-    address: "0x7d971C39bb700AcEc20879D46f092dC0DB1dbF9E",
-    avatar: "https://ik.imagekit.io/montresor/9.png?updatedAt=1730742966131",
-    tagline: "Securing the blockchain, one contract at a time",
-    languages: ["🇫🇷", "🇩🇴", "🇬🇧"],
-    links: {
-      bg: "https://app.buidlguidl.com/builders/0x7d971C39bb700AcEc20879D46f092dC0DB1dbF9E",
-      github: "https://github.com/All-Khwarizmi",
-      twitter: "https://twitter.com/swarecito",
-      telegram: "https://t.me/swarecito",
+const BUILDER_INFO = {
+  name: "Jason Suárez",
+  role: "Smart Contract | Frontend Developer",
+  address: "0x7d971C39bb700AcEc20879D46f092dC0DB1dbF9E",
+  avatar: "https://ik.imagekit.io/montresor/9.png?updatedAt=1730742966131",
+  tagline: "Securing the blockchain, one contract at a time",
+  languages: ["🇫🇷", "🇩🇴", "🇬🇧"],
+  links: {
+    bg: "https://app.buidlguidl.com/builders/0x7d971C39bb700AcEc20879D46f092dC0DB1dbF9E",
+    github: "https://github.com/All-Khwarizmi",
+    twitter: "https://twitter.com/swarecito",
+    telegram: "https://t.me/swarecito",
+  },
+  focus: {
+    building: "Smart Contracts",
+    learning: "DeFi security and cross-chain mechanics",
+    contributing: "BuildGuild batch12 and open source",
+  },
+  journey: [
+    {
+      year: "2023",
+      milestone: "Frontend Developer",
+      detail: "Building modern web applications",
     },
-    focus: {
-      building: "Smart Contracts",
-      learning: "DeFi security and cross-chain mechanics",
-      contributing: "BuildGuild batch12 and open source",
+    {
+      year: "2024",
+      milestone: "Blockchain Development",
+      detail: "Smart contract development & security",
     },
-    journey: [
-      {
-        year: "2023",
-        milestone: "Frontend Developer",
-        detail: "Building modern web applications",
-      },
-      {
-        year: "2024",
-        milestone: "Blockchain Development",
-        detail: "Smart contract development & security",
-      },
-      {
-        year: "2025",
-        milestone: "BuildGuild #12",
-        detail: "Contributing to Web3 ecosystem",
-      },
-    ],
-  };
-
+    {
+      year: "2025",
+      milestone: "BuildGuild #12",
+      detail: "Contributing to Web3 ecosystem",
+    },
+  ],
+} as const;
+export const JasonBuilderProfile: NextPage = () => {
   return (
     <div className="p-4 flex  items-center justify-center">
       <div className="max-w-2xl w-full">
@@ -47,7 +48,13 @@ export default function Page() {
           <div className="flex flex-col items-center space-y-4">
             {/* Avatar */}
             <div className="relative">
-              <img src={BUILDER_INFO.avatar} alt="Profile" className="w-32 h-32 rounded-full object-cover" />
+              <Image
+                src={BUILDER_INFO.avatar}
+                alt="Profile"
+                width={128}
+                height={128}
+                className="rounded-full object-cover"
+              />
             </div>
 
             {/* Identity */}
@@ -131,4 +138,6 @@ export default function Page() {
       </div>
     </div>
   );
-}
+};
+
+export default JasonBuilderProfile;
