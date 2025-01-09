@@ -3,7 +3,9 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { Contract } from "ethers";
 
 // Update with your Batch number
-const BATCH_NUMBER = "12";
+// const BATCH_NUMBER = "12";
+const OWNER = "0x1C945Cd472EFBE3b34798AA49457Bc7415636E5D";
+const BATCH_REGISTRY_CONTRACT = "0x72ccAbE6620fa94eC69569d17f18a3914BEFBFD6";
 
 /**
  * Deploys a contract named "deployYourContract" using the deployer account and
@@ -25,24 +27,38 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("BatchRegistry", {
+  // await deploy("BatchRegistry", {
+  //   from: deployer,
+  //   // Contract constructor arguments
+  //   args: [OWNER, BATCH_NUMBER],
+  //   log: true,
+  //   // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+  //   // automatically mining the contract deployment transaction. There is no effect on live networks.
+  //   autoMine: true,
+  // });
+
+  // Get the deployed contract to interact with it after deploying.
+  // const batchRegistry = await hre.ethers.getContract<Contract>("BatchRegistry", deployer);
+
+  // const batchRegistryAddress = await batchRegistry.getAddress();
+
+  // console.log("\nBatchRegistry deployed to:", batchRegistryAddress);
+  // console.log("Remember to update the allow list!\n");
+
+  // // The GraduationNFT contract is deployed on the BatchRegistry constructor.
+  // const batchGraduationNFTAddress = await batchRegistry.batchGraduationNFT();
+  // console.log("BatchGraduation NFT deployed to:", batchGraduationNFTAddress, "\n");
+
+  await deploy("CheckIn", {
     from: deployer,
-    // Contract constructor arguments
-    args: [deployer, BATCH_NUMBER],
+    args: [OWNER, BATCH_REGISTRY_CONTRACT],
     log: true,
-    // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
-    // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
 
-  // Get the deployed contract to interact with it after deploying.
-  const batchRegistry = await hre.ethers.getContract<Contract>("BatchRegistry", deployer);
-  console.log("\nBatchRegistry deployed to:", await batchRegistry.getAddress());
-  console.log("Remember to update the allow list!\n");
+  const checkIn = await hre.ethers.getContract<Contract>("CheckIn", deployer);
 
-  // The GraduationNFT contract is deployed on the BatchRegistry constructor.
-  const batchGraduationNFTAddress = await batchRegistry.batchGraduationNFT();
-  console.log("BatchGraduation NFT deployed to:", batchGraduationNFTAddress, "\n");
+  console.log("CheckIn deployed to:", await checkIn.getAddress(), "\n");
 };
 
 export default deployYourContract;
