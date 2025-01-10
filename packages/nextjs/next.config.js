@@ -2,14 +2,6 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "ik.imagekit.io",
-      },
-    ],
-  },
   reactStrictMode: true,
   typescript: {
     ignoreBuildErrors: process.env.NEXT_PUBLIC_IGNORE_BUILD_ERROR === "true",
@@ -25,6 +17,10 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { hostname: "avatars.githubusercontent.com" },
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
     ],
   },
 };
