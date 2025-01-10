@@ -12,11 +12,9 @@ import {
   ChevronDownIcon,
   DocumentDuplicateIcon,
   QrCodeIcon,
-  UserGroupIcon,
 } from "@heroicons/react/24/outline";
 import { BlockieAvatar, isENS } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
-import { useBuilderStatus } from "~~/hooks/useBuilderStatus";
 import { getTargetNetworks } from "~~/utils/scaffold-eth";
 
 const allowedNetworks = getTargetNetworks();
@@ -47,8 +45,6 @@ export const AddressInfoDropdown = ({
   };
   useOutsideClick(dropdownRef, closeDropdown);
 
-  const { isAllowListed, isCheckedIn } = useBuilderStatus(checkSumAddress);
-
   return (
     <>
       <details ref={dropdownRef} className="dropdown dropdown-end leading-3">
@@ -57,10 +53,6 @@ export const AddressInfoDropdown = ({
           <span className="ml-2 mr-1">
             {isENS(displayName) ? displayName : checkSumAddress?.slice(0, 6) + "..." + checkSumAddress?.slice(-4)}
           </span>
-          {isAllowListed && <UserGroupIcon className="h-4 w-4 text-success" title="Batch Member" />}
-          {!isAllowListed && <UserGroupIcon className="h-4 w-4 text-error" title="Not a Batch Member" />}
-          {isCheckedIn && <CheckCircleIcon className="h-4 w-4 text-success" title="Checked In" />}
-          {!isCheckedIn && <CheckCircleIcon className="h-4 w-4 text-error" title="Not Checked In" />}
           <ChevronDownIcon className="h-6 w-4 ml-2 sm:ml-0" />
         </summary>
         <ul
