@@ -39,7 +39,7 @@ const BUILDER_INFO = {
     },
   ],
 } as const;
-export const JasonBuilderProfile: NextPage = () => {
+const JasonBuilderProfile: NextPage = () => {
   return (
     <div className="p-4 flex  items-center justify-center">
       <div className="max-w-2xl w-full">
@@ -51,6 +51,7 @@ export const JasonBuilderProfile: NextPage = () => {
               <Image
                 src={BUILDER_INFO.avatar}
                 alt="Profile"
+                priority
                 width={128}
                 height={128}
                 className="rounded-full object-cover"
