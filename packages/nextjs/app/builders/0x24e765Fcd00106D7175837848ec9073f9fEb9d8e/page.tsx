@@ -96,7 +96,7 @@ const NigerianFlag = () => (
   </svg>
 );
 
-export default function Home() {
+export default function FrankiePowerPage() {
   const [currentImage, setCurrentImage] = useState(0);
   const [showLocation, setShowLocation] = useState(false);
 
