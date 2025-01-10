@@ -14,6 +14,15 @@ const nextConfig = {
     config.externals.push("pino-pretty", "lokijs", "encoding");
     return config;
   },
+  images: {
+    remotePatterns: [
+      { hostname: "avatars.githubusercontent.com" },
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
