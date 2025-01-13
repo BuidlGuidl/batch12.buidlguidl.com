@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { NextPage } from "next";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { BatchMembers } from "~~/components/BatchMembers";
 
 const Home: NextPage = () => {
   return (
@@ -18,6 +19,9 @@ const Home: NextPage = () => {
             <span className="font-bold">Checked in builders count:</span>
             <span>To Be Implemented</span>
           </p>
+        </div>
+        <div className="flex-grow w-full mt-16 flex justify-center items-center">
+          <BatchMembers />
         </div>
 
         <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
