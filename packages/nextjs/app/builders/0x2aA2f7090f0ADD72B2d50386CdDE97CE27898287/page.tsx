@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Address } from "~~/components/scaffold-eth";
 
 const BuildersProfile = () => {
   const address = "0x2aA2f7090f0ADD72B2d50386CdDE97CE27898287";
@@ -20,7 +21,7 @@ const BuildersProfile = () => {
             />
           </div>
           <h1 className="text-4xl font-bold">Wilfred Adzer</h1>
-          <p className="text-gray-600 break-all">{address}</p>
+          <Address address={address} />
         </div>
 
         <div className="text-center">
