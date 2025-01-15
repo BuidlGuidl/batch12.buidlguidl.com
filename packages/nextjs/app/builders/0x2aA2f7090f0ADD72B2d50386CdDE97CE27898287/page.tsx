@@ -78,9 +78,6 @@ const BuildersProfile = () => {
               </p>
             </div>
             <div>
-              <h1>My Projects</h1>
-            </div>
-            <div>
               <div>
                 <h1></h1>
               </div>
