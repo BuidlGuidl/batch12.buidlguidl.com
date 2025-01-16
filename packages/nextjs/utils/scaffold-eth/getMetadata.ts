@@ -44,7 +44,20 @@ export const getMetadata = ({
       images: [imageUrl],
     },
     icons: {
-      icon: [{ url: "/logo-white.png", sizes: "64x64", type: "image/png" }],
+      icon: [
+        {
+          url: "/logo.svg",
+          media: "(prefers-color-scheme: light)",
+          sizes: "64x64",
+          type: "image/svg+xml",
+        },
+        {
+          url: "/logo-white.png",
+          media: "(prefers-color-scheme: dark)",
+          sizes: "64x64",
+          type: "image/png",
+        },
+      ],
     },
   };
 };

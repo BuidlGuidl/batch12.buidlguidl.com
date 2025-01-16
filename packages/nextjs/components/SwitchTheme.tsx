@@ -13,10 +13,19 @@ export const SwitchTheme = ({ className }: { className?: string }) => {
   const handleToggle = () => {
     if (isDarkMode) {
       setTheme("light");
-      return;
+    } else {
+      setTheme("dark");
     }
-    setTheme("dark");
   };
+
+  useEffect(() => {
+    if (mounted && typeof window !== "undefined") {
+      const iconLink = document.querySelector('link[rel="icon"]');
+      if (iconLink) {
+        iconLink.setAttribute("href", isDarkMode ? "/logo-white.png" : "/logo.svg");
+      }
+    }
+  }, [isDarkMode, mounted]);
 
   useEffect(() => {
     setMounted(true);
