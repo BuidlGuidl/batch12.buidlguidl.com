@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { NextPage } from "next/types";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { Address } from "~~/components/scaffold-eth";
 
-const BuildersProfile = () => {
+const WilfredProfile: NextPage = () => {
   const address = "0x2aA2f7090f0ADD72B2d50386CdDE97CE27898287";
   return (
     <>
@@ -14,8 +15,8 @@ const BuildersProfile = () => {
         <div className="flex flex-col items-center gap-4">
           <div className="relative w-32 h-32">
             <Image
-              src="/myAvatar.jpg" // Replace with your actual image URL
-              alt="Your Name"
+              src="/0x2aA2f7090f0ADD72B2d50386CdDE97CE27898287.jpg"
+              alt="0x2aA2f7090f0ADD72B2d50386CdDE97CE27898287"
               layout="fill"
               className="rounded-full ring-4 ring-blue-500"
             />
@@ -33,25 +34,25 @@ const BuildersProfile = () => {
               rel="noopener noreferrer"
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold flex py-2 px-4 space-x-5 rounded"
             >
-              <FaGithub className="mt-1" />
+              <FaGithub className="mt-1 mx-2" />
               GitHub
             </Link>
             <Link
-              href="https://twitter.com/yourusername"
+              href="https://twitter.com/drips_young"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-500 hover:bg-blue-600 text-white flex font-bold py-2 px-4 rounded"
             >
-              <FaXTwitter className="mt-1" />
+              <FaXTwitter className="mt-1 mx-2" />
               Twitter
             </Link>
             <Link
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/wilfred-adzer-89261923a/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-500 hover:bg-blue-600 flex text-white font-bold py-2 px-4 rounded"
             >
-              <FaLinkedin className="mt-1" />
+              <FaLinkedin className="mt-1 mx-2" />
               LinkedIn
             </Link>
           </div>
@@ -59,8 +60,8 @@ const BuildersProfile = () => {
 
         <div className="w-full bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="px-6 py-4">
-            <h2 className="font-bold text-2xl mb-2">About Me</h2>
-            <p className="text-gray-600 mb-4">Blockchain Developer</p>
+            <h2 className="font-bold text-2xl mb-2 dark:text-black">About Me</h2>
+            <p className="text-gray-600 mb-4 font-bold">Blockchain Developer</p>
             <div className="space-y-4 text-gray-700 mb-4">
               <p>
                 I am a blockchain developer who specializes in developing decentralized applications (dApps) and
@@ -68,7 +69,7 @@ const BuildersProfile = () => {
                 fascinated by the potential of blockchain technology to reshape our digital landscape.
               </p>
               <p>
-                Currently, I&apos;m working on projects that combines NFTs markets and upcomiing artist, allowing users
+                Currently, I&apos;m working on projects that combines NFTs markets and upcoming artist, allowing users
                 to create and trade unique, music art on the blockchain. This project exemplifies my passion for merging
                 cutting-edge technologies to create novel user experiences.
               </p>
@@ -90,4 +91,4 @@ const BuildersProfile = () => {
   );
 };
 
-export default BuildersProfile;
+export default WilfredProfile;
