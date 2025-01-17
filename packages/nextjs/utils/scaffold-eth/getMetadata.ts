@@ -46,13 +46,13 @@ export const getMetadata = ({
     icons: {
       icon: [
         {
-          url: "/logo.svg",
+          url: "/batch-logo-black.svg",
           media: "(prefers-color-scheme: light)",
           sizes: "64x64",
           type: "image/svg+xml",
         },
         {
-          url: "/logo-white.png",
+          url: "/batch-logo-white.png",
           media: "(prefers-color-scheme: dark)",
           sizes: "64x64",
           type: "image/png",
