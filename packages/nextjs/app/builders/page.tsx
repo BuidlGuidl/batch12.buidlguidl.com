@@ -71,7 +71,7 @@ const BuildersPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center">
-      <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 mt-10">
+      <div className="w-full max-w-4xl bg-base-100 shadow-lg rounded-lg p-6 mt-10">
         <h1 className="text-3xl font-bold mb-4">Builders in Batch 12</h1>
         <p className="mb-6">
           Welcome to the list of builders who have successfully checked in for Batch 12. Below, you will find a list of
@@ -85,19 +85,20 @@ const BuildersPage = () => {
           <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded">buildersWithProfiles.json</code> file to activate
           your page link.
         </p>
-        <ul className="list-decimal list-inside space-y-6">
-          {uniqueBuilders.map((builder, index) => (
-            <li key={builder} className="flex items-center space-x-2">
-              <span className="font-medium">{index + 1}.</span>
-              <Address address={builder} />
+        <div className="gap-2 grid grid-cols-2 md:grid-cols-3">
+          {uniqueBuilders.map(builder => (
+            <div key={builder} className="">
+              <div className="h-10">
+                <Address address={builder} />
+              </div>
               {builder && validProfiles.includes(builder) && (
-                <a href={`/builders/${builder}`} className="text-blue-600 dark:text-blue-400 hover:underline ml-4">
+                <a href={`/builders/${builder}`} className="block text-blue-600 dark:text-blue-400 hover:underline">
                   Profile
                 </a>
               )}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );
