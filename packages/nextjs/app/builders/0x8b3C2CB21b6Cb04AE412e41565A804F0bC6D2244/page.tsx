@@ -1,197 +1,168 @@
 "use client";
 
 import { useState } from "react";
-
-interface Quest {
-  id: string;
-  title: string;
-  icon: string;
-  current: number;
-  total: number;
-  reward: string;
-}
-
-interface InventoryItem {
-  id: string;
-  name: string;
-  icon: string;
-  description: string;
-  rarity: "common" | "rare" | "legendary";
-}
-
-interface Achievement {
-  id: string;
-  icon: string;
-  title: string;
-  description: string;
-  unlocked: boolean;
-  rarity: "common" | "rare" | "legendary";
-}
+import "./page.css";
+import { achievements, inventory, quests } from "./resources";
+import { FaDiscord, FaGithub, FaTelegram, FaXTwitter } from "react-icons/fa6";
 
 export default function ProfilePage() {
+  const [showAchievements, setShowAchievements] = useState(false);
   const [showInventory, setShowInventory] = useState(false);
   const [showQuests, setShowQuests] = useState(false);
   const [showMiniGame, setShowMiniGame] = useState(false);
-  const [gameBoard, setGameBoard] = useState<string[]>(Array(9).fill(""));
+  const [gameBoard, setGameBoard] = useState<string[]>(Array(16).fill(""));
   const [selectedCell, setSelectedCell] = useState<number | null>(null);
 
-  const quests: Quest[] = [
-    {
-      id: "1",
-      title: "Plant 100 Seeds",
-      icon: "🌱",
-      current: 65,
-      total: 100,
-      reward: "🏆 Legendary Gardener Title",
-    },
-    {
-      id: "2",
-      title: "Water Gardens",
-      icon: "💧",
-      current: 3,
-      total: 10,
-      reward: "💫 Rare Growth Potion",
-    },
-  ];
-
-  const inventory: InventoryItem[] = [
-    {
-      id: "1",
-      name: "Magic Seed",
-      icon: "🌱",
-      description: "A rare seed that grows digital flowers",
-      rarity: "rare",
-    },
-    {
-      id: "2",
-      name: "Water Essence",
-      icon: "💧",
-      description: "Pure digital water for your garden",
-      rarity: "common",
-    },
-    {
-      id: "3",
-      name: "Growth Potion",
-      icon: "⚗️",
-      description: "Doubles garden growth speed",
-      rarity: "rare",
-    },
-    {
-      id: "4",
-      name: "Star Fragment",
-      icon: "⭐",
-      description: "A piece of digital stardust",
-      rarity: "legendary",
-    },
-  ];
-
-  const achievements: Achievement[] = [
-    {
-      id: "1",
-      icon: "🌱",
-      title: "First Steps",
-      description: "Plant your first seed",
-      unlocked: true,
-      rarity: "common",
-    },
-    {
-      id: "2",
-      icon: "🔥",
-      title: "100 Days Streak",
-      description: "Maintain activity for 100 days",
-      unlocked: true,
-      rarity: "rare",
-    },
-    {
-      id: "3",
-      icon: "👑",
-      title: "Garden Master",
-      description: "Reach level 50",
-      unlocked: true,
-      rarity: "legendary",
-    },
-    {
-      id: "4",
-      icon: "⭐",
-      title: "Legendary Status",
-      description: "???",
-      unlocked: false,
-      rarity: "legendary",
-    },
-  ];
-
   // Mini-game logic
-  const colors = ["🌸", "🌺", "🌻", "🌼", "🌷"];
+  const emojis = ["🌸", "🌺", "🍄", "🌼", "🪻"];
 
   const handleCellClick = (index: number) => {
     if (gameBoard[index]) return;
 
     const newBoard = [...gameBoard];
-    newBoard[index] = colors[Math.floor(Math.random() * colors.length)];
+    newBoard[index] = emojis[Math.floor(Math.random() * emojis.length)];
     setGameBoard(newBoard);
 
     if (selectedCell === null) {
       setSelectedCell(index);
     } else {
-      // Check for match
       if (newBoard[selectedCell] === newBoard[index]) {
-        // Match found!
+        setSelectedCell(null);
+      } else {
         setTimeout(() => {
           const clearedBoard = [...newBoard];
           clearedBoard[selectedCell] = "";
           clearedBoard[index] = "";
           setGameBoard(clearedBoard);
+          setSelectedCell(null);
         }, 500);
       }
-      setSelectedCell(null);
     }
   };
 
+  const socialLinks = [
+    {
+      name: "discord",
+      link: "https://discord.com/users/715113364245839872",
+      icon: <FaDiscord />,
+    },
+    {
+      name: "github",
+      link: "https://github.com/psychemist",
+      icon: <FaGithub />,
+    },
+    {
+      name: "email",
+      link: "https://telegram.me/teleborg",
+      icon: <FaTelegram />,
+    },
+    {
+      name: "twitter",
+      link: "https://x.com/internetingbot",
+      icon: <FaXTwitter />,
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#0a0a0f] p-6 font-['Press_Start_2P']">
-      <div className="max-w-2xl mx-auto bg-[#1a1a2f] rounded-2xl border-4 border-[#00ff9d] p-6 relative">
-        {/* Profile Header */}
+    <div className="flex min-h-screen bg-[#0f0f0f] p-6 bg-cover bg-center font-['Press_Start_2P'] relative z-0 justify-center items-center">
+      <div className="relative z-0 max-w-2xl mx-auto bg-[#1a1a2f] rounded-2xl border-3 border-[#00ff9d] p-6 shadow-lg">
+        <div className="moving-line"></div>
         <div className="grid grid-cols-[96px,1fr] gap-6 mb-6 items-center">
           <div
-            className="w-24 h-24 bg-[#1a1a2f] border-4 border-[#00ff9d] relative cursor-pointer hover:scale-105 transition-transform"
+            className="w-24 h-24 bg-[#1a1a2f] border-2 border-[#00ff9d] relative cursor-pointer hover:scale-105 transition-transform rounded-lg"
             onClick={() => setShowMiniGame(true)}
           >
-            {/* Avatar content */}
+            <img
+              src="https://github.com/psychemist.png"
+              alt="profile image"
+              className="w-full h-full object-cover rounded-lg"
+            />
           </div>
 
           <div>
-            <h1 className="text-xl text-[#00ff9d] mb-2">
-              VOID GARDENER <span className="bg-[#ff00ff] text-[#0a0a0f] px-2 py-1 text-sm animate-pulse">LVL 42</span>
+            <h1 className="text-2xl text-[#93bbfb] mb-2">
+              psychemist{" "}
+              <span className="bg-gradient-to-r from-[#b950f2] to-[#b950f2] text-[#0a0a0f] px-2 py-0 mb-3 text-sm animate-pulse">
+                LVL 99
+              </span>
             </h1>
-            <p className="text-sm text-[#00f0ff] break-all">0xD7AB529467eB698db97044c34997d01804204CCD</p>
+            <a
+              className="text-sm text-[#93bbfb] break-all hover:underline flex items-center"
+              href="https://app.buidlguidl.com/builders/0x8b3C2CB21b6Cb04AE412e41565A804F0bC6D2244"
+              target="_blank"
+              rel="noopener"
+            >
+              0x8b3C2CB21b6Cb04AE412e41565A804F0bC6D2244
+              <span className="ml-2">⬅︎</span>
+            </a>
           </div>
         </div>
 
         {/* XP Bar */}
-        <div className="h-6 bg-[#0a0a0f] border-2 border-[#ffd700] relative mb-6">
-          <div className="h-full w-3/4 bg-[#ffd700] relative">
-            <div className="absolute inset-0 flex items-center justify-center text-xs text-[#0a0a0f]">
-              75% TO LVL 43
+        <div className="h-6 bg-[#0a0a0f] border-2 border-[#ffd700] relative mb-6 rounded-full overflow-hidden">
+          <div className="h-full w-3/4 mb-4 bg-gradient-to-r from-[#3c3c42] to-[#ffdd00] p-2 text-sm hover:bg-[#ffdd00]transition-colors rounded-lg shadow-md">
+            <div className="absolute inset-0 flex items-center justify-center text-xs text-[#0a0a0f] font-semibold">
+              75% TO LVL 100
             </div>
           </div>
         </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-3 gap-3 mb-6">
-          {["847 COMMITS", "42.eth POWER", "13.37k MANA"].map((stat, i) => (
-            <div key={i} className="bg-[#0a0a0f] border-2 border-[#00ff9d] p-3 text-center relative overflow-hidden">
-              <div className="text-lg text-[#00ff9d] mb-1">{stat.split(" ")[0]}</div>
+          {["42.ETH POWER", "13.37k MANA", "1111 SPELLS"].map((stat, i) => (
+            <div
+              key={i}
+              className="bg-[#0a0a0f] border-2 border-[#00ff9d] p-3 text-center relative overflow-hidden rounded-lg shadow-md"
+            >
+              <div className="text-lg text-[#b950f2] mb-1">{stat.split(" ")[0]}</div>
               <div className="text-xs text-[#e0e0ff]">{stat.split(" ")[1]}</div>
             </div>
           ))}
         </div>
 
+        <div className="relative mb-6 bg-[rgba(0,240,255,0.05)] border-2 border-[#00f0ff] p-4 text-sm text-[rgb(147,187,251)] rounded-lg shadow-md">
+          Bit manipulator and garden keeper in the infinite ether. Building sustainable digital ecosystems one block at
+          a time. Currently exploring the intersection of zero knowledge protocols and self-governing virtual reality
+          cityscapes.
+        </div>
+
+        {/* Mini Game Modal */}
+        {showMiniGame && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div className="bg-[#0a0a0f] border-4 border-[#00ff9d] p-6 rounded-xl">
+              <h3 className="text-center font-extrabold mb-4">🍀 GARDEN MATCH 🍀</h3>
+              <h4 className="text-sm text-bold text-center font-bold mb-4">🏋🏽‍♂️ HARDCORE MODE 🏋🏽‍♂️</h4>
+              <div className="grid grid-cols-4 gap-2 mb-4">
+                {gameBoard.map((cell, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleCellClick(index)}
+                    className="w-16 h-16 bg-[#1a1a2f] border-2 border-[#00f0ff] rounded flex items-center justify-center text-2xl hover:bg-[#2a2a3f] transition-colors"
+                  >
+                    {cell}
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => {
+                  setShowMiniGame(false);
+                  setGameBoard(Array(16).fill(""));
+                  setSelectedCell(null);
+                }}
+                className="w-full bg-[#00ff9d] text-[#0a0a0f] py-2 rounded hover:bg-[#00cc7d] transition-colors"
+              >
+                CLOSE
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Quests Panel */}
         <button
           onClick={() => setShowQuests(!showQuests)}
-          className="w-full mb-4 bg-[#0a0a0f] border-2 border-[#00f0ff] p-2 text-sm hover:bg-[#00f0ff] hover:text-[#0a0a0f] transition-colors"
+          className="w-full mb-4 bg-gradient-to-r from-[#0a0a0f] to-[#3ab2dd] border-2 border-[#00f0ff] p-2 text-sm hover:bg-[#00f0ff] hover:text-[#0a0a0f] transition-colors rounded-lg shadow-md"
         >
-          📜 QUESTS
+          📜 QUESTS 📜
         </button>
 
         {showQuests && (
@@ -216,49 +187,19 @@ export default function ProfilePage() {
           </div>
         )}
 
-        {/* Mini Game Modal */}
-        {showMiniGame && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-[#0a0a0f] border-4 border-[#00ff9d] p-6 rounded-xl">
-              <h3 className="text-center mb-4">GARDEN MATCH</h3>
-              <div className="grid grid-cols-3 gap-2 mb-4">
-                {gameBoard.map((cell, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleCellClick(index)}
-                    className="w-16 h-16 bg-[#1a1a2f] border-2 border-[#00f0ff] rounded flex items-center justify-center text-2xl hover:bg-[#2a2a3f] transition-colors"
-                  >
-                    {cell}
-                  </button>
-                ))}
-              </div>
-              <button
-                onClick={() => {
-                  setShowMiniGame(false);
-                  setGameBoard(Array(9).fill(""));
-                  setSelectedCell(null);
-                }}
-                className="w-full bg-[#00ff9d] text-[#0a0a0f] py-2 rounded hover:bg-[#00cc7d] transition-colors"
-              >
-                CLOSE
-              </button>
-            </div>
-          </div>
-        )}
-
         {/* Inventory Button */}
         <button
           onClick={() => setShowInventory(!showInventory)}
-          className="absolute top-6 right-6 bg-transparent border-2 border-[#00ff9d] text-[#00ff9d] p-2 hover:bg-[#00ff9d] hover:text-[#0a0a0f] transition-colors rounded"
+          className="absolute top-6 right-14 bg-transparent border-2 border-[#00ff9d] text-[#00ff9d] p-2 mx-2 hover:bg-[#00ff9d] hover:text-[#0a0a0f] transition-colors rounded"
         >
           🎒
         </button>
 
         {/* Inventory Panel */}
         {showInventory && (
-          <div className="mb-6 bg-[#0a0a0f] border-2 border-[#00ff9d] p-4 rounded-lg">
-            <h3 className="mb-4 text-sm">INVENTORY</h3>
-            <div className="grid grid-cols-6 gap-2">
+          <div className="relative mb-6 bg-[#0a0a0f] border-2 border-[#00ff9d] p-4 rounded-lg">
+            <h3 className="mb-4 text-md text-center">🍇 INVENTORY 🍇</h3>
+            <div className="grid grid-cols-6 gap-6">
               {inventory.map(item => (
                 <div
                   key={item.id}
@@ -266,7 +207,7 @@ export default function ProfilePage() {
                     aspect-square bg-[#1a1a2f] border-2 
                     ${
                       item.rarity === "legendary"
-                        ? "border-[#ff00ff]"
+                        ? "border-[#b950f2]"
                         : item.rarity === "rare"
                           ? "border-[#00f0ff]"
                           : "border-[#00ff9d]"
@@ -283,62 +224,51 @@ export default function ProfilePage() {
           </div>
         )}
 
-        <div className="mb-6 bg-[#0a0a0f] border-2 border-[#00ff9d] p-4 rounded-lg">
-          <h3 className="mb-4 text-sm">ACHIEVEMENTS</h3>
-          <div className="grid grid-cols-6 gap-2">
-            {achievements.map(item => (
-              <div
-                key={item.id}
-                className={`
-                    aspect-square bg-[#1a1a2f] border-2 
-                    ${
-                      item.rarity === "legendary"
-                        ? "border-[#ff00ff]"
-                        : item.rarity === "rare"
-                          ? "border-[#00f0ff]"
-                          : "border-[#00ff9d]"
-                    }
-                    rounded flex items-center justify-center text-2xl cursor-help
-                    hover:scale-105 transition-transform
-                  `}
-                title={`${item.title}\n${item.description}`}
-              >
-                {item.icon}
+        {/* Achievements Panel */}
+        <button
+          onClick={() => setShowAchievements(!showAchievements)}
+          className="absolute top-6 right-5 bg-transparent border-2 border-[#00ff9d] text-[#00ff9d] p-2 mx-1 hover:bg-[#00ff9d] hover:text-[#0a0a0f] transition-colors rounded"
+        >
+          🏆
+        </button>
+
+        {showAchievements && (
+          <div className="relative mb-6 bg-[#0a0a0f] border-2 border-[#00f0ff] p-4 rounded-lg">
+            <h3 className="mb-4 text-md text-center">🥇 ACHIEVEMENTS 🥇</h3>
+            {achievements.map(achievement => (
+              <div key={achievement.id} className="px-3 mb-2 last:mb-0">
+                <div className="flex items-center gap-2 mb-2">
+                  <span>{achievement.icon}</span>
+                  <span className="text-md">{achievement.title}</span>
+                </div>
+                <div className="flex justify-between align-items text-xs text-[#e0e0ff]">
+                  <span className="text-sm">{achievement.description}</span>
+                  <span className="text-right text-xs mt-0 mb-5 text-[#00ff9d]">
+                    {achievement.unlocked ? "Unlocked" : "Locked"}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
-        </div>
+        )}
 
-        {/* Rest of the profile content */}
-        <div className="bio mb-6 bg-[rgba(0,240,255,0.05)] border-2 border-[#00f0ff] p-4 text-sm">
-          Pixel artist and garden keeper in the infinite ethereum void. Building sustainable digital ecosystems one
-          block at a time. Currently exploring the intersection of zero knowledge porotocols and infinite generative
-          gardens.
-        </div>
-
-        {/* Social Links */}
-        <div className="grid grid-cols-2 gap-3">
-          {["TWITTER", "GITHUB", "MIRROR", "FARCASTER"].map(link => (
-            <a
-              key={link}
-              href="#"
-              className="flex items-center px-4 py-2 bg-[#0a0a0f] border-2 border-[#00ff9d] text-[#e0e0ff] no-underline text-sm hover:bg-[#00ff9d] hover:text-[#0a0a0f] hover:-translate-y-0.5 transition-all"
-            >
-              <span className="mr-2 text-[#00ff9d]">{">"}</span>
-              {link}
+        <div className="flex gap-5 mt-2 justify-center items-center">
+          {socialLinks.map(app => (
+            <a href={app.link} target="_blank" rel="noopener noreferrer" className="btn btn-primary" key={app.link}>
+              {app.icon}
             </a>
           ))}
         </div>
 
         {/* Animated Dots */}
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(5)].map((_, i) => (
+          {[...Array(25)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-[#00ff9d] rounded-full animate-blink"
+              className="absolute w-1 h-1 bg-[#00ff9d] rounded-full animate-pulse"
               style={{
-                top: `${[10, 90, 50, 30, 70][i]}%`,
-                left: `${[90, 10, 85, 15, 95][i]}%`,
+                top: `${[10, 90, 50, 30, 70, 20, 80, 40, 60, 25, 75, 35, 65, 45, 55, 15, 85, 35, 65, 45, 5, 95, 55, 75, 25][i]}%`,
+                left: `${[90, 10, 85, 15, 95, 5, 45, 25, 75, 35, 65, 45, 55, 50, 50, 20, 80, 30, 70, 40, 60, 40, 20, 80, 60][i]}%`,
                 animationDelay: `${i * 0.2}s`,
               }}
             />
