@@ -15,8 +15,16 @@ const BuildersPage = () => {
   });
 
   const uniqueBuilders = useMemo(() => {
-    return Array.from(new Set(events?.map(event => event.args.builder) || []));
+    return Array.from(new Set(events?.map(event => event.args.builder).filter(Boolean) || [])) as string[];
   }, [events]);
+
+  const sortedBuilders = useMemo(() => {
+    return [...uniqueBuilders].sort((a, b) => {
+      const aHasProfile = validProfiles.includes(a) ? 1 : 0;
+      const bHasProfile = validProfiles.includes(b) ? 1 : 0;
+      return bHasProfile - aHasProfile;
+    });
+  }, [uniqueBuilders, validProfiles]);
 
   useEffect(() => {
     const checkProfiles = async () => {
@@ -57,7 +65,7 @@ const BuildersPage = () => {
           address.
         </p>
         <div className="gap-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-          {uniqueBuilders.map(builder => (
+          {sortedBuilders.map(builder => (
             <div key={builder} className="bg-base-200 rounded-[22px] py-2 px-2 hover:bg-base-300 transition-all h-full">
               <div className="flex justify-between items-center h-full">
                 <div>
