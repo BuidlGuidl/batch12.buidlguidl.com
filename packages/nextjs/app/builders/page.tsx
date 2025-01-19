@@ -53,14 +53,8 @@ const BuildersPage = () => {
         <p className="mb-6">
           Welcome to the list of builders who have successfully checked in for Batch 12. Below, you will find a list of
           all builders and their Ethereum addresses. If a builder has a profile page, you&#39;ll see a{" "}
-          <span className="text-blue-600 dark:text-blue-400">Profile</span> link next to their address.
-        </p>
-        <p className="mb-6">
-          If you&#39;re one of the builders and don&#39;t see a{" "}
-          <span className="text-blue-600 dark:text-blue-400">Profile</span> link for your address, make sure to add your
-          Ethereum address to the{" "}
-          <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded">buildersWithProfiles.json</code> file to activate
-          your page link.
+          <HiOutlineUserCircle className="text-blue-600 dark:text-blue-400 inline w-6 h-6" /> icon next to their
+          address.
         </p>
         <div className="gap-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {uniqueBuilders.map(builder => (
