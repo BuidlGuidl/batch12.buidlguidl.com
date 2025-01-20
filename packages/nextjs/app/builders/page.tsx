@@ -75,7 +75,7 @@ const BuildersPage = () => {
                   <a
                     href={`/builders/${builder}`}
                     className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
-                    title="View Profile"
+                    title={`View ${builder} Profile`}
                   >
                     <HiOutlineUserCircle className="w-6 h-6" />
                   </a>
