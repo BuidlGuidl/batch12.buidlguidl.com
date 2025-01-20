@@ -1,8 +1,8 @@
 import { useScaffoldReadContract } from "./scaffold-eth/useScaffoldReadContract";
 import { Address } from "viem";
-import { useAccount } from "wagmi";
+import { useAccount, useChainId } from "wagmi";
 
-type BuilderState = "disconnected" | "notAllowlisted" | "notCheckedIn" | "checkedIn";
+type BuilderState = "disconnected" | "notAllowlisted" | "notCheckedIn" | "checkedIn" | "wrongNetwork";
 
 const stateConfigs = {
   disconnected: {
@@ -34,6 +34,13 @@ const stateConfigs = {
       type: "success" as const,
     },
   },
+  wrongNetwork: {
+    tooltip: "Switch to Optimism network",
+    notification: {
+      message: "Please switch to Optimism network",
+      type: "warning" as const,
+    },
+  },
 } as const;
 
 export const useBuilderState = (address?: Address) => {
@@ -56,10 +63,12 @@ export const useBuilderState = (address?: Address) => {
 
 export const useBuilderStateConfig = () => {
   const { address } = useAccount();
+  const chainId = useChainId();
   const { isAllowListed, isCheckedIn } = useBuilderState(address);
 
   const getState = (): BuilderState => {
     if (!address) return "disconnected";
+    if (chainId !== 10) return "wrongNetwork";
     if (!isAllowListed) return "notAllowlisted";
     if (!isCheckedIn) return "notCheckedIn";
     return "checkedIn";
