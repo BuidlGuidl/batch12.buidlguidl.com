@@ -91,14 +91,14 @@ export const inventory: InventoryItem[] = [
   {
     id: "5",
     name: "Mystery Box",
-    icon: "⁇",
+    icon: "🤔",
     description: "A mystery item",
     rarity: "rare",
   },
   {
     id: "6",
     name: "Mystery Box",
-    icon: "⁇",
+    icon: "🤐",
     description: "A mystery item",
     rarity: "legendary",
   },
