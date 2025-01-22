@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useCallback, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BuilderStateInBatch } from "./BuilderStateInBatch";
 import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
+import { LogoSvg } from "~~/components/assets/LogoSvg";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -90,8 +90,8 @@ export const Header = () => {
           )}
         </div>
         <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
-          <div className="flex relative w-10 h-10">
-            <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
+          <div className="flex w-10 h-10">
+            <LogoSvg />
           </div>
           <div className="flex flex-col">
             <span className="font-bold leading-tight">BuildGuidl Batch 12</span>
