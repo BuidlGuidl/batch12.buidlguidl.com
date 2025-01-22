@@ -1,6 +1,6 @@
-export function LogoSvg() {
+export const LogoSvg = ({ className = "" }: { className?: string }) => {
   return (
-    <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M394 419.361V567.137L333.927 575.346V523.618C333.927 504.498 318.872 488.996 300.374 488.996C281.877 488.996 266.822 504.498 266.822 523.618V575.346L207 567.137V419.361H242.011V440.713C242.011 449.851 249.217 457.24 258.058 457.24C266.898 457.24 274.104 449.851 274.104 440.713V419.361H326.621V440.623C326.621 449.76 333.828 457.149 342.668 457.149C351.508 457.149 358.715 449.76 358.715 440.623V419.361H394Z"
         fill="currentColor"
@@ -36,4 +36,4 @@ export function LogoSvg() {
       <path d="M452 301.397L495.167 326.832V281.839L452 301.397Z" fill="currentColor" />
     </svg>
   );
-}
+};
