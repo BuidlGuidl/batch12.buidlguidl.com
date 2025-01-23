@@ -55,23 +55,46 @@ const yunohuProfile: NextPage = () => {
       </div>
       <div className="card w-full max-w-2xl  mt-8 ">
         <div className="card-body">
-          <h4> &gt; cd ~/data/whoami _</h4>
+          <h4> &gt; cd ~/data/yunohu _</h4>
           <p>
-            &gt; less ~/.config/greeting.txt _<br />
+            &gt; less ~/.config/<b>whoami</b>.txt _<br />
             <b>Hello! I am Yunohu 👋</b>
             <br />
             (END)
             <br />
             <br />
-            &gt; head -n 1 ~/profile/interests.txt _<br />
+            &gt; head -n 1 ~/profile/<b>about_me</b>.txt _<br />
             <b>I love building and breaking things 🏗️+🔨=☯️</b>
             <br />
             <br />
-            &gt; cat ~/.local/share/background.txt _<br />
-            <b>I&apos;m a CS undergrad learning about blockchain, smart contracts, and security ⛓️🔐.</b>
+            &gt; cat ~/.local/share/<b>background</b>.txt _<br />
+            <b>CS undergrad learning about blockchain, smart contracts, and security⛓️🔐.</b>
             <br />
             <br />
-            &gt; _{" "}
+            &gt; ls ~/profile/<b>skills</b> _<br />
+            <b>
+              JavaScript
+              <br /> Solidity
+              <br /> React
+              <br /> Node.js
+              <br /> express <br /> Python
+              <br /> C++
+              <br />
+            </b>{" "}
+            self confidence
+            <br /> Fluent in gif and stickers
+            <br />
+            Proficient in chatgpt Driven Development
+            <br />
+            Level 7 procrastination master (but always delivers on time)
+            <br />
+            Can summarize a 300-page textbook in 3 bullet points - in uni exams
+            <br />
+            fluent in six languages, including Gen Z slang - no cap
+            <br /> Peace out ✌️
+            <br />
+            <br />
+            &gt; _
           </p>
         </div>
       </div>
