@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import { NextPage } from "next";
 import { FaTelegram } from "react-icons/fa";
@@ -5,34 +6,112 @@ import { FaGithub, FaTwitter } from "react-icons/fa6";
 import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { Address } from "~~/components/scaffold-eth";
 
-const yunohuProfile: NextPage = () => {
-  const address = "0xD692E6FCCC221a28cD6D57436Ec9F7cEf8c6D490";
+const address = "0xD692E6FCCC221a28cD6D57436Ec9F7cEf8c6D490";
 
-  const socialLinks = [
-    {
-      name: "github",
-      link: "https://github.com/NVN404",
-      icon: <FaGithub className="h-6 w-6" />,
-    },
-    {
-      name: "twitter",
-      link: "https://x.com/yun0hu",
-      icon: <FaTwitter className="h-6 w-6" />,
-    },
-    {
-      name: "telegram",
-      link: "https://t.me/YUN0HU",
-      icon: <FaTelegram className="h-6 w-6" />,
-    },
-    {
-      name: "buidlguidl",
-      link: "http://app.buidlguidl.com/builders/0xD692E6FCCC221a28cD6D57436Ec9F7cEf8c6D490",
-      icon: <BuidlGuidlLogo className="h-6 w-6" />,
-    },
-  ] as const;
+const socialLinks = [
+  {
+    name: "github",
+    link: "https://github.com/NVN404",
+    icon: <FaGithub className="h-6 w-6" />,
+  },
+  {
+    name: "twitter",
+    link: "https://x.com/yun0hu",
+    icon: <FaTwitter className="h-6 w-6" />,
+  },
+  {
+    name: "telegram",
+    link: "https://t.me/YUN0HU",
+    icon: <FaTelegram className="h-6 w-6" />,
+  },
+  {
+    name: "buidlguidl",
+    link: "http://app.buidlguidl.com/builders/0xD692E6FCCC221a28cD6D57436Ec9F7cEf8c6D490",
+    icon: <BuidlGuidlLogo className="h-6 w-6" />,
+  },
+] as const;
 
+interface TerminalEntry {
+  command: string;
+  output: React.ReactNode;
+}
+
+const TerminalText = ({ entries }: { entries: TerminalEntry[] }) => {
   return (
-    <div className={`flex flex-col items-center gap-4 py-12 px-2 md:px-4 lg:px-8 `}>
+    <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono overflow-auto">
+      {entries.map((entry, index) => (
+        <div key={index}>
+          <p>
+            {`> ${entry.command} _`}
+            <br />
+            {entry.output}
+            <br />
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const terminalEntries: TerminalEntry[] = [
+  {
+    command: "cd ~/data/yunohu",
+    output: "",
+  },
+  {
+    command: "less ~/.config/whoami.txt",
+    output: "Hello! I am Yunohu 👋",
+  },
+  {
+    command: "head -n 1 ~/about_me.txt",
+    output: "I love building and breaking things 🏗️+🔨=☯️",
+  },
+  {
+    command: "cat ~/share/background.txt",
+    output: "CS undergrad learning about blockchain, smart contracts, and security⛓️🔐.",
+  },
+  {
+    command: "ls ~/profile/skills",
+    output: (
+      <p>
+        JavaScript/
+        <br />
+        Solidity/ <br />
+        React/
+        <br />
+        Node.js/
+        <br />
+        Express/
+        <br />
+        Python/
+        <br />
+        C++/
+        <br />
+        self confidence
+        <br />
+        Fluent in GIFs and stickers
+        <br />
+        Proficient in ChatGippity Driven Development
+        <br />
+        Level 7 procrastination master (but always delivers on time)
+        <br />
+        Can summarize 300-page textbook in 3 bullet points - in exams
+        <br />
+        Fluent in six languages, including Gen Z slang - no cap
+        <br />
+        Peace out ✌️
+      </p>
+    ),
+  },
+  {
+    command: "",
+    output: "",
+  },
+];
+
+const yunohuProfile: NextPage = () => {
+  return (
+    <div className={`flex flex-col items-center gap-4 py-12 px-2 md:px-4 lg:px-8`}>
       <div className="flex flex-col items-center gap-4">
         <div className="avatar">
           <Image
@@ -53,49 +132,9 @@ const yunohuProfile: NextPage = () => {
           </a>
         ))}
       </div>
-      <div className="card w-full max-w-2xl  mt-8 ">
+      <div className="card w-full max-w-2xl mt-8 bg-gray-900 text-green-400">
         <div className="card-body">
-          <h4> &gt; cd ~/data/yunohu _</h4>
-          <p>
-            &gt; less ~/.config/<b>whoami</b>.txt _<br />
-            <b>Hello! I am Yunohu 👋</b>
-            <br />
-            (END)
-            <br />
-            <br />
-            &gt; head -n 1 ~/profile/<b>about_me</b>.txt _<br />
-            <b>I love building and breaking things 🏗️+🔨=☯️</b>
-            <br />
-            <br />
-            &gt; cat ~/.local/share/<b>background</b>.txt _<br />
-            <b>CS undergrad learning about blockchain, smart contracts, and security⛓️🔐.</b>
-            <br />
-            <br />
-            &gt; ls ~/profile/<b>skills</b> _<br />
-            <b>
-              JavaScript
-              <br /> Solidity
-              <br /> React
-              <br /> Node.js
-              <br /> express <br /> Python
-              <br /> C++
-              <br />
-            </b>{" "}
-            self confidence
-            <br /> Fluent in gif and stickers
-            <br />
-            Proficient in chatgpt Driven Development
-            <br />
-            Level 7 procrastination master (but always delivers on time)
-            <br />
-            Can summarize a 300-page textbook in 3 bullet points - in uni exams
-            <br />
-            fluent in six languages, including Gen Z slang - no cap
-            <br /> Peace out ✌️
-            <br />
-            <br />
-            &gt; _
-          </p>
+          <TerminalText entries={terminalEntries} />
         </div>
       </div>
     </div>
