@@ -50,7 +50,7 @@ const PsychemistBuilderPage: NextPage = () => {
       style={{
         backgroundImage: `url(${bgPattern.src})`,
       }}
-    >
+      >
       {/* <div className="relative z-0 bg-[#201f1f] rounded-2xl max-w-2xl mx-auto p-6"> */}
       <div className="relative z-0 max-w-2xl mx-auto bg-[#474783] rounded-2xl border-3 p-6 shadow-lg">
         <div className="md:hidden flex justify-end gap-2 mb-4">
@@ -263,5 +263,6 @@ const PsychemistBuilderPage: NextPage = () => {
     </div>
   );
 };
+// SVG sourec: www.freepik.com
 
 export default PsychemistBuilderPage;
