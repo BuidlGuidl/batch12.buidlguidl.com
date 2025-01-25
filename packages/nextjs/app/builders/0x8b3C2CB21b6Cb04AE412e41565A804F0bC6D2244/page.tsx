@@ -1,12 +1,19 @@
+/* eslint-disable prettier/prettier */
 "use client";
 
 import { useState } from "react";
+import { Aldrich } from "next/font/google";
 import Image from "next/image";
 import MiniGame from "./MiniGame";
-import "./page.css";
+import bgPattern from "./background.svg";
 import { achievements, inventory, quests } from "./resources";
 import { NextPage } from "next";
 import { FaDiscord, FaGithub, FaTelegram, FaXTwitter } from "react-icons/fa6";
+
+const aldrich = Aldrich({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const socialLinks = [
   {
@@ -38,10 +45,14 @@ const PsychemistBuilderPage: NextPage = () => {
   const [showMiniGame, setShowMiniGame] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-[#0f0f0f] p-6 bg-cover bg-center font-['Press_Start_2P'] relative z-0 justify-center items-center">
-      <div className="relative z-0 max-w-2xl mx-auto bg-[#1a1a2f] rounded-2xl border-3 border-[#00ff9d] p-6 shadow-lg">
-        <div className="moving-line"></div>
-
+    <div
+      className={`flex min-h-screen p-6 relative z-0 justify-center items-center ${aldrich.className} bg-[#201f1f] bg-cover bg-center bg-blend-lighten`}
+      style={{
+        backgroundImage: `url(${bgPattern.src})`,
+      }}
+    >
+      {/* <div className="relative z-0 bg-[#201f1f] rounded-2xl max-w-2xl mx-auto p-6"> */}
+      <div className="relative z-0 max-w-2xl mx-auto bg-[#474783] rounded-2xl border-3 p-6 shadow-lg">
         <div className="md:hidden flex justify-end gap-2 mb-4">
           <button
             onClick={() => setShowInventory(!showInventory)}
@@ -70,9 +81,6 @@ const PsychemistBuilderPage: NextPage = () => {
               className="object-cover rounded-lg"
             />
           </div>
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 text-xs text-[#00ff9d] text-center w-full px-4">
-            Click on profile picture to play hidden game!
-          </div>
 
           <div className="relative">
             <div className="hidden md:flex absolute top-0 right-0 gap-2">
@@ -90,12 +98,12 @@ const PsychemistBuilderPage: NextPage = () => {
               </button>
             </div>
 
-            <h1 className="text-2xl text-[#93bbfb] mb-2">
-              psychemist{" "}
-              <span className="bg-gradient-to-r from-[#b950f2] to-[#b950f2] text-[#0a0a0f] px-2 py-0 mb-3 text-sm animate-pulse">
+            <div className="flex flex-col w-4/5 mb-2 gap-0 md:gap-2 md:flex-row md:items-center md:w-full">
+              <h1 className="mb-0 text-lg text-[#93bbfb]">psychemist</h1>
+              <span className="inline-block bg-gradient-to-r from-[#b950f2] to-[#b950f2] text-[#0a0a0f] px-2 py-0 text-sm animate-pulse">
                 LVL 99
               </span>
-            </h1>
+            </div>
             <a
               className="text-sm text-[#93bbfb] break-all hover:underline flex items-center"
               href="https://app.buidlguidl.com/builders/0x8b3C2CB21b6Cb04AE412e41565A804F0bC6D2244"
@@ -247,20 +255,10 @@ const PsychemistBuilderPage: NextPage = () => {
           ))}
         </div>
 
-        {/* Animated Dots */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(25)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-[#00ff9d] rounded-full animate-pulse"
-              style={{
-                top: `${[10, 90, 50, 30, 70, 20, 80, 40, 60, 25, 75, 35, 65, 45, 55, 15, 85, 35, 65, 45, 5, 95, 55, 75, 25][i]}%`,
-                left: `${[90, 10, 85, 15, 95, 5, 45, 25, 75, 35, 65, 45, 55, 50, 50, 20, 80, 30, 70, 40, 60, 40, 20, 80, 60][i]}%`,
-                animationDelay: `${i * 0.2}s`,
-              }}
-            />
-          ))}
+        <div className="flex justify-center mt-5 px-4 text-center text-sm text-[#00ff9d] z-1">
+            Click on profile picture to play hidden game!
         </div>
+
       </div>
     </div>
   );
