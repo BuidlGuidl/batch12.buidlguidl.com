@@ -5,29 +5,27 @@ import { NextPage } from "next/types";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { Address } from "~~/components/scaffold-eth";
 
+const ADDRESS = "0x2aA2f7090f0ADD72B2d50386CdDE97CE27898287";
+
+const LINKS_DATA = [
+  {
+    href: "https://github.com/wilfred007",
+    label: "GitHub",
+    icon: <FaGithub className="mt-1 mx-2" />,
+  },
+  {
+    href: "https://twitter.com/drips_young",
+    label: "Twitter",
+    icon: <FaXTwitter className="mt-1 mx-2" />,
+  },
+  {
+    href: "https://www.linkedin.com/in/wilfred-adzer-89261923a/",
+    label: "LinkedIn",
+    icon: <FaLinkedin className="mt-1 mx-2" />,
+  },
+];
+
 const WilfredProfile: NextPage = () => {
-  const address = "0x2aA2f7090f0ADD72B2d50386CdDE97CE27898287";
-
-  // Links data array
-  const linksData = [
-    {
-      href: "https://github.com/wilfred007",
-      label: "GitHub",
-      icon: <FaGithub className="mt-1 mx-2" />,
-    },
-    {
-      href: "https://twitter.com/drips_young",
-      label: "Twitter",
-      icon: <FaXTwitter className="mt-1 mx-2" />,
-    },
-    {
-      href: "https://www.linkedin.com/in/wilfred-adzer-89261923a/",
-      label: "LinkedIn",
-      icon: <FaLinkedin className="mt-1 mx-2" />,
-    },
-  ];
-
-  // Reusable LinkButton component
   const LinkButton = ({ href, label, icon }: { href: string; label: string; icon: React.ReactNode }) => (
     <Link
       href={href}
@@ -53,13 +51,13 @@ const WilfredProfile: NextPage = () => {
             />
           </div>
           <h1 className="text-4xl font-bold">Wilfred Adzer</h1>
-          <Address address={address} />
+          <Address address={ADDRESS} />
         </div>
 
         <div className="text-center">
           <p className="text-xl mb-4">Blockchain Developer</p>
           <div className="flex gap-4 justify-center">
-            {linksData.map((link, index) => (
+            {LINKS_DATA.map((link, index) => (
               <LinkButton key={index} href={link.href} label={link.label} icon={link.icon} />
             ))}
           </div>
