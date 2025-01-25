@@ -5,8 +5,6 @@ import { NextPage } from "next/types";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { Address } from "~~/components/scaffold-eth";
 
-const ADDRESS = "0x2aA2f7090f0ADD72B2d50386CdDE97CE27898287";
-
 const LINKS_DATA = [
   {
     href: "https://github.com/wilfred007",
@@ -37,6 +35,8 @@ const WilfredProfile: NextPage = () => {
       {label}
     </Link>
   );
+
+  const ADDRESS = "0x2aA2f7090f0ADD72B2d50386CdDE97CE27898287";
 
   return (
     <>
