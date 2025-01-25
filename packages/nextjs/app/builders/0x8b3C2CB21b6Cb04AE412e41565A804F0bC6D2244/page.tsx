@@ -41,6 +41,22 @@ const PsychemistBuilderPage: NextPage = () => {
     <div className="flex min-h-screen bg-[#0f0f0f] p-6 bg-cover bg-center font-['Press_Start_2P'] relative z-0 justify-center items-center">
       <div className="relative z-0 max-w-2xl mx-auto bg-[#1a1a2f] rounded-2xl border-3 border-[#00ff9d] p-6 shadow-lg">
         <div className="moving-line"></div>
+
+        <div className="md:hidden flex justify-end gap-2 mb-4">
+          <button
+            onClick={() => setShowInventory(!showInventory)}
+            className="bg-transparent border-2 border-[#00ff9d] text-[#00ff9d] p-2 hover:bg-[#00ff9d] hover:text-[#0a0a0f] transition-colors rounded"
+          >
+            🎒
+          </button>
+          <button
+            onClick={() => setShowAchievements(!showAchievements)}
+            className="bg-transparent border-2 border-[#00ff9d] text-[#00ff9d] p-2 hover:bg-[#00ff9d] hover:text-[#0a0a0f] transition-colors rounded"
+          >
+            🏆
+          </button>
+        </div>
+
         <div className="grid grid-cols-[96px,1fr] gap-6 mb-6 items-center">
           <div
             className="w-24 h-24 bg-[#1a1a2f] border-2 border-[#00ff9d] relative cursor-pointer hover:scale-105 transition-transform rounded-lg"
@@ -54,11 +70,26 @@ const PsychemistBuilderPage: NextPage = () => {
               className="object-cover rounded-lg"
             />
           </div>
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 text-xs text-[#00ff9d]">
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 text-xs text-[#00ff9d] text-center w-full px-4">
             Click on profile picture to play hidden game!
           </div>
 
-          <div>
+          <div className="relative">
+            <div className="hidden md:flex absolute top-0 right-0 gap-2">
+              <button
+                onClick={() => setShowInventory(!showInventory)}
+                className="bg-transparent border-2 border-[#00ff9d] text-[#00ff9d] p-2 hover:bg-[#00ff9d] hover:text-[#0a0a0f] transition-colors rounded"
+              >
+                🎒
+              </button>
+              <button
+                onClick={() => setShowAchievements(!showAchievements)}
+                className="bg-transparent border-2 border-[#00ff9d] text-[#00ff9d] p-2 hover:bg-[#00ff9d] hover:text-[#0a0a0f] transition-colors rounded"
+              >
+                🏆
+              </button>
+            </div>
+
             <h1 className="text-2xl text-[#93bbfb] mb-2">
               psychemist{" "}
               <span className="bg-gradient-to-r from-[#b950f2] to-[#b950f2] text-[#0a0a0f] px-2 py-0 mb-3 text-sm animate-pulse">
@@ -99,6 +130,7 @@ const PsychemistBuilderPage: NextPage = () => {
           ))}
         </div>
 
+        {/* Bio */}
         <div className="relative mb-6 bg-[rgba(0,240,255,0.05)] border-2 border-[#00f0ff] p-4 text-sm text-[#e0e0ff] rounded-lg shadow-md">
           Bit manipulator and garden keeper in the infinite ether. Building sustainable digital ecosystems one block at
           a time. Currently exploring the intersection of zero knowledge protocols and self-governing virtual reality
@@ -108,7 +140,7 @@ const PsychemistBuilderPage: NextPage = () => {
         {/* Mini Game Modal */}
         {showMiniGame && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-[#0a0a0f] border-4 border-[#00ff9d] p-8 rounded-xl">
+            <div className="bg-[#0a0a0f] border-2 border-[#00ff9d] p-8 rounded-xl">
               <h3 className="text-center font-extrabold mb-4">🍀 GARDEN MATCH 🍀</h3>
               <h4 className="text-sm text-bold text-center font-bold mb-4">🏋🏽‍♂️ HARDCORE MODE 🏋🏽‍♂️</h4>
               <p className="my-5 text-xs text-center text-[#00ff9d]">
@@ -157,17 +189,9 @@ const PsychemistBuilderPage: NextPage = () => {
           </div>
         )}
 
-        {/* Inventory Button */}
-        <button
-          onClick={() => setShowInventory(!showInventory)}
-          className="absolute top-6 right-14 bg-transparent border-2 border-[#00ff9d] text-[#00ff9d] p-2 mx-2 hover:bg-[#00ff9d] hover:text-[#0a0a0f] transition-colors rounded"
-        >
-          🎒
-        </button>
-
         {/* Inventory Panel */}
         {showInventory && (
-          <div className="relative mb-6 bg-[#0a0a0f] border-2 border-[#00ff9d] p-4 rounded-lg">
+          <div className="relative mb-6 bg-[#0a0a0f] border-2 border-[#00f0ff] p-4 rounded-lg">
             <h3 className="mb-4 text-md text-center text-[#93bbfb]">🍇 INVENTORY 🍇</h3>
             <div className="grid grid-cols-6 gap-6">
               {inventory.map(item => (
@@ -195,13 +219,6 @@ const PsychemistBuilderPage: NextPage = () => {
         )}
 
         {/* Achievements Panel */}
-        <button
-          onClick={() => setShowAchievements(!showAchievements)}
-          className="absolute top-6 right-5 bg-transparent border-2 border-[#00ff9d] text-[#00ff9d] p-2 mx-1 hover:bg-[#00ff9d] hover:text-[#0a0a0f] transition-colors rounded"
-        >
-          🏆
-        </button>
-
         {showAchievements && (
           <div className="relative mb-6 bg-[#0a0a0f] border-2 border-[#00f0ff] p-4 rounded-lg">
             <h3 className="mb-4 text-md text-center text-[#93bbfb]">🥇 ACHIEVEMENTS 🥇</h3>
