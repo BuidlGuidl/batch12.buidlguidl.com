@@ -1,31 +1,32 @@
 "use client";
 
 import Image from "next/image";
+import { NextPage } from "next";
 import { FaMediumM } from "react-icons/fa";
 import { FaGithub, FaXTwitter } from "react-icons/fa6";
 import { Address } from "~~/components/scaffold-eth";
 
-const emirhancavusogluProfile = () => {
-  const address = "0x1a2A553a967d99B65481Ab819885FDC0CD6C6920";
+const address = "0x1a2A553a967d99B65481Ab819885FDC0CD6C6920";
 
-  const socialLinks = [
-    {
-      name: "github",
-      link: "https://github.com/Emirhan-Cavusoglu-sftw",
-      icon: <FaGithub />,
-    },
-    {
-      name: "x",
-      link: "https://x.com/Emirhan_cvsgl",
-      icon: <FaXTwitter />,
-    },
-    {
-      name: "medium",
-      link: "https://medium.com/@emirhancavusoglu",
-      icon: <FaMediumM />,
-    },
-  ] as const;
+const socialLinks = [
+  {
+    name: "github",
+    link: "https://github.com/Emirhan-Cavusoglu-sftw",
+    icon: <FaGithub />,
+  },
+  {
+    name: "x",
+    link: "https://x.com/Emirhan_cvsgl",
+    icon: <FaXTwitter />,
+  },
+  {
+    name: "medium",
+    link: "https://medium.com/@emirhancavusoglu",
+    icon: <FaMediumM />,
+  },
+] as const;
 
+const emirhancavusogluProfile: NextPage = () => {
   return (
     <div className="flex flex-col items-center gap-4 py-12 px-2  md:px-4 lg:px-8">
       <div className="flex flex-col items-center gap-4">
@@ -61,7 +62,14 @@ const emirhancavusogluProfile = () => {
           <p>
             I am a full-stack web3 developer building dapps and attending hackathons. I am currently exploring account
             abstraction and Solidity security. I wrote a beginner-friendly article on how to build a dapp with account
-            abstraction and won a prize from the Scroll article contest. You can check it out on Medium.
+            abstraction and won a prize from the Scroll article contest. You can check it out on{" "}
+            <a
+              className="font-bold underline"
+              href="https://medium.com/@emirhancavusoglu/mastering-account-abstraction-a-step-by-step-guide-ce80219779c4"
+            >
+              Medium
+            </a>
+            .
           </p>
         </div>
       </div>
