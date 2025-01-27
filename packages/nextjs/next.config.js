@@ -23,8 +23,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "pbs.twimg.com"
-      }
+        hostname: "pbs.twimg.com",
+      },
+      {
+        protocol: "https",
+        hostname: "github.com",
+      },
     ],
   },
 };
