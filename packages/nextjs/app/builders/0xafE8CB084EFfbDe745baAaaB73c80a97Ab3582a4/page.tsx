@@ -1,6 +1,5 @@
-"use client";
-
 import Image from "next/image";
+import type { NextPage } from "next";
 import { FaGithub, FaXTwitter } from "react-icons/fa6";
 import { Address } from "~~/components/scaffold-eth";
 
@@ -19,10 +18,10 @@ const socialLinks = [
   },
 ] as const;
 
-export default function LandoProfilePage() {
+const LandoProfilePage: NextPage = () => {
   return (
     <div className="bg-transparent py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
+      <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 shadow-xl rounded-lg overflow-hidden">
         <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 h-32"></div>
         <div className="px-4 py-5 sm:p-6">
           <div className="sm:flex sm:items-center sm:justify-between">
@@ -38,13 +37,15 @@ export default function LandoProfilePage() {
               </div>
               <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
                 <span className="flex flex-row space-x-4 justify-center items-center text-center">
-                  <p className="text-xl font-bold text-gray-900 sm:text-2xl">Ahmet Tahir Yıldız</p>
-                  <span className="text-sm text-gray-500">
+                  <p className="text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">Ahmet Tahir Yıldız</p>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
                     <Address address={address} />
                   </span>
                 </span>
 
-                <p className="text-sm font-medium text-gray-600">Web3 Developer | Front End Developer</p>
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                  Web3 Developer | Front End Developer
+                </p>
               </div>
             </div>
             <div className="mt-5 flex justify-center sm:mt-0">
@@ -52,7 +53,7 @@ export default function LandoProfilePage() {
                 <a
                   key={social.name}
                   href={social.link}
-                  className="text-gray-400 hover:text-gray-500 mx-2"
+                  className="text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-400 mx-2"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -62,12 +63,14 @@ export default function LandoProfilePage() {
             </div>
           </div>
 
-          <div className="mt-5 text-base text-gray-700">
+          <div className="mt-5 text-base text-gray-700 dark:text-gray-300">
             <p>
-              I am a front end developer specializing in creating intuitive and visually appealing user interfaces using
-              technologies like React, Next.js, and TypeScript. With a focus on delivering responsive and
-              high-performance applications, I am passionate about crafting seamless digital experiences. While my
-              expertise lies in front-end development, I also explore blockchain technologies like Ethereum and Solidity
+              I am a <span className="font-semibold">front end developer</span> specializing in creating intuitive and
+              visually appealing user interfaces using technologies like{" "}
+              <span className="font-semibold">React, Next.js, and TypeScript</span>. With a focus on delivering
+              responsive and high-performance applications, I am passionate about crafting seamless digital experiences.
+              While my expertise lies in front-end development, I also explore blockchain technologies like{" "}
+              <span className="font-semibold">Ethereum and Solidity</span>
               to bridge the gap between decentralized systems and user-friendly design. My goal is to innovate and
               contribute to projects that shape the future of web development.
             </p>
@@ -76,4 +79,6 @@ export default function LandoProfilePage() {
       </div>
     </div>
   );
-}
+};
+
+export default LandoProfilePage;
