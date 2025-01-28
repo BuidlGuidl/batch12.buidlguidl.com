@@ -8,14 +8,6 @@ type Message = {
   content: string;
 };
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
-
 const SYSTEM_PROMPT = `You are a helpful AI assistant with deep knowledge of the current project's codebase. 
 When showing code examples:
 1. Always specify the language after the opening \`\`\` (e.g. \`\`\`typescript)
@@ -33,6 +25,24 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
     const codeContext = await getCodeContext();
     const useAnthropic = process.env.USE_ANTHROPIC === "true";
+
+    // Check for API keys before proceeding
+    if (useAnthropic && !process.env.ANTHROPIC_API_KEY) {
+      console.error("Anthropic API key is missing.");
+      return NextResponse.json({ error: "Anthropic API key is missing" }, { status: 500 });
+    } else if (!useAnthropic && !process.env.OPENAI_API_KEY) {
+      console.error("OpenAI API key is missing.");
+      return NextResponse.json({ error: "OpenAI API key is missing" }, { status: 500 });
+    }
+
+    // Instantiate the API clients inside the API call to avoid issues during build time
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+
+    const anthropic = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY,
+    });
 
     const contextualizedMessages: Message[] = [
       { role: "system", content: SYSTEM_PROMPT + "\n\n" + codeContext },
