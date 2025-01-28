@@ -2391,7 +2391,6 @@ __metadata:
     "@trivago/prettier-plugin-sort-imports": ^4.3.0
     "@types/node": ^18.19.50
     "@types/react": ^18.3.5
-    "@types/react-syntax-highlighter": ^15.5.13
     "@uniswap/sdk-core": ^5.8.2
     "@uniswap/v2-sdk": ^4.6.1
     abitype: 1.0.6
@@ -12982,6 +12981,7 @@ __metadata:
   resolution: "se-2@workspace:."
   dependencies:
     "@anthropic-ai/sdk": ^0.36.2
+    "@types/react-syntax-highlighter": ^15.5.13
     husky: ^9.1.6
     lint-staged: ^15.2.10
     openai: ^4.80.1
