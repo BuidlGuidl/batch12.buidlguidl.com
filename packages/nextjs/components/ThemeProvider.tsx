@@ -14,7 +14,7 @@ export const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
             const isDark = document.documentElement.classList.contains("dark");
             const iconLink = document.querySelector('link[rel="icon"]');
             if (iconLink) {
-              iconLink.setAttribute("href", isDark ? "/logo-white.png" : "/logo.svg");
+              iconLink.setAttribute("href", isDark ? "/batch-logo-white.png" : "/batch-logo-black.svg");
             }
           }
         });
