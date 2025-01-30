@@ -46,6 +46,7 @@ const WilfredProfile: NextPage = () => {
               src="/0x2aA2f7090f0ADD72B2d50386CdDE97CE27898287.jpg"
               alt="0x2aA2f7090f0ADD72B2d50386CdDE97CE27898287"
               fill={true}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="rounded-full ring-4 ring-blue-500"
             />
           </div>
