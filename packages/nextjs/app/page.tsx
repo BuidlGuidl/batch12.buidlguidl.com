@@ -2,7 +2,6 @@ import Link from "next/link";
 import BuildersCheckInCount from "./_components/BuildersCheckInCount";
 import type { NextPage } from "next";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { AIChat } from "~~/components/ai/AIChat";
 
 const Home: NextPage = () => {
   return (
@@ -41,8 +40,6 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-        <h1 className="text-4xl font-bold my-4">Builders Chat Assistant</h1>
-        <AIChat />
       </div>
     </>
   );
