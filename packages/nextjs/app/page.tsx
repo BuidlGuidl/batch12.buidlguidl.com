@@ -8,10 +8,16 @@ const Home: NextPage = () => {
   return (
     <>
       <div className="relative container mx-auto px-12 sm:px-6 lg:px-8">
-        <Image src="/background.jpg" alt="Background" layout="fill" objectFit="cover" className="opacity-10" />
+        <Image
+          src="/background.jpg"
+          alt="Website Background Image"
+          layout="fill"
+          objectFit="cover"
+          className="opacity-5"
+        />
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-around py-20 gap-2">
           {/* Left Content Section */}
-          <div className="text-center lg:text-left space-y-8 order-2 lg:order-1">
+          <section className="text-center lg:text-left space-y-8 order-2 lg:order-1">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
               Seizing the right time
               <span className="block text-emerald-400">to build.</span>
@@ -33,10 +39,10 @@ const Home: NextPage = () => {
                 <ChevronRightIcon className="h-5 w-5" />
               </button>
             </Link>
-          </div>
+          </section>
 
           {/* Right Content Section */}
-          <div className="flex justify-center items-center order-1 lg:order-2">
+          <section className="flex justify-center items-center order-1 lg:order-2">
             <div className="relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[450px]">
               <div className="absolute -inset-1 bg-emerald-500/30 rounded-full blur-3xl"></div>
               <Image
@@ -47,7 +53,7 @@ const Home: NextPage = () => {
                 className="relative rounded-lg w-full h-auto"
               />
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </>
