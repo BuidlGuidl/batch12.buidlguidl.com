@@ -1,6 +1,5 @@
-"use client";
-
 import Link from "next/link";
+import BuildersCheckInCount from "./_components/BuildersCheckInCount";
 import type { NextPage } from "next";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
@@ -14,10 +13,7 @@ const Home: NextPage = () => {
             <span className="block text-4xl font-bold">Batch 12</span>
           </h1>
           <p className="text-center text-lg">Get started by taking a look at your batch GitHub repository.</p>
-          <p className="text-lg flex gap-2 justify-center">
-            <span className="font-bold">Checked in builders count:</span>
-            <span>To Be Implemented</span>
-          </p>
+          <BuildersCheckInCount />
         </div>
 
         <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">

@@ -13,7 +13,10 @@ interface SocialButtonProps {
   href: string;
 }
 
-const profileImages = ["/image1.jpeg", "/image2.jpg"];
+const profileImages = [
+  "/0x24e765Fcd00106D7175837848ec9073f9fEb9d8e/image1.jpeg",
+  "/0x24e765Fcd00106D7175837848ec9073f9fEb9d8e/image2.jpg",
+];
 
 const stats = [
   {
