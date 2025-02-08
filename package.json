@@ -55,6 +55,7 @@
     "node": ">=18.18.0"
   },
   "dependencies": {
+    "lucide-react": "^0.469.0",
     "react-icons": "^5.4.0"
   }
 }
