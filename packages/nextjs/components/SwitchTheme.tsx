@@ -13,9 +13,9 @@ export const SwitchTheme = ({ className }: { className?: string }) => {
   const handleToggle = () => {
     if (isDarkMode) {
       setTheme("light");
-    } else {
-      setTheme("dark");
+      return;
     }
+    setTheme("dark");
   };
 
   useEffect(() => {
