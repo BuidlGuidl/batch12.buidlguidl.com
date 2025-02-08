@@ -8,13 +8,7 @@ const Home: NextPage = () => {
   return (
     <>
       <div className="relative container mx-auto px-12 sm:px-6 lg:px-8">
-        <Image
-          src="/background.jpg"
-          alt="Website Background Image"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-5"
-        />
+        <Image src="/background.jpg" alt="Website Background Image" priority fill className="opacity-5 object-cover" />
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-around py-20 gap-2">
           {/* Left Content Section */}
           <section className="text-center lg:text-left space-y-8 order-2 lg:order-1">
@@ -32,7 +26,7 @@ const Home: NextPage = () => {
 
             <Link href={"/builders"} passHref>
               <button
-                className="mt-8 px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-semibold 
+                className="mt-8 px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-semibold
           flex items-center justify-center gap-2 mx-auto lg:mx-0 transition-all duration-300 transform hover:scale-105"
               >
                 Meet the Builders
@@ -49,7 +43,7 @@ const Home: NextPage = () => {
                 src="/Network.png"
                 alt="Blockchain Network"
                 width={450}
-                height={150}
+                height={450}
                 className="relative rounded-lg w-full h-auto"
               />
             </div>
